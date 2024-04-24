@@ -8,3 +8,5 @@ Setup guide
 REM Chat ID til modtageren                                                                                                                                                                                                                SET "chatId=CHAT_ID_HERE"                                                                                                                                                                                                                                                                                                                                                    
 4 - save fil and run                                                                                                                                                                                                                                                                                                                                                    
 HAVE FUN :-D
+
+Made By @Murdervan - github.com/murdervan/
