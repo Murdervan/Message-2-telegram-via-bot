@@ -1,6 +1,8 @@
 @ECHO OFF
 REM MADE BY @MURDERVAN - www.unit.link/murdervan/ - www.github.com/murdervan/
 
+SETLOCAL ENABLEDELAYEDEXPANSION
+
 ECHO.
 ECHO ------------------------------
 ECHO Message 2 Telegram via your own bot 
@@ -10,32 +12,24 @@ ECHO www.github.com/murdervan/
 ECHO ------------------------------
 ECHO.
 
-REM Telegram Bot Token
-SET "botToken=TELEGRAM_TOKEN_HERE"
+REM Telegram API URL
+SET baseURL=https://api.telegram.org/bot<TELEGRAM_TOKEN>/sendMessage
 
-REM Chat ID til modtageren
-SET "chatId=CHAT_ID_HERE"
+REM Chat ID
+SET chatId=@<CHANNEL/GROUP_NAME>
 
-REM Loop for at indtaste beskeder
 :loop
 SET /P "userInput=Indtast din besked ('exit' for at afslutte): "
 
-REM Tjek om brugeren vil afslutte
-IF "%userInput%"=="exit" (
-    GOTO :eof
-)
+IF "%userInput%"=="exit" GOTO :eof
 
-REM Send besked til Telegram via bot og webhook
-curl -s -X POST https://api.telegram.org/bot%botToken%/sendMessage -d chat_id=%chatId% -d text="%userInput%" > nul
+REM Brug forsinket ekspansion til at håndtere input korrekt
+SET "encodedInput=!userInput: =%%20!"
 
-REM Tjek om beskeden blev sendt korrekt
-IF %errorlevel% EQU 0 (
-    ECHO Besked sendt til Telegram!
-) ELSE (
-    ECHO Fejl: Besked blev ikke sendt til Telegram.
-)
+REM Send besked via Telegram API uden at vise output i CMD
+curl -s "%baseURL%?chat_id=%chatId%&text=!encodedInput!" > nul 2>&1
 
-REM Gå tilbage til loop for at indtaste flere beskeder
+ECHO Besked sendt!
 GOTO :loop
 
 :eof
