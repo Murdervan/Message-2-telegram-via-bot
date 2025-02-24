@@ -1,5 +1,18 @@
 @ECHO OFF
-REM MADE BY @MURDERVAN - www.unit.link/murdervan/ - www.github.com/murdervan/
+
+REM ###########################################################
+REM #                                                         #
+REM # Title        : Message to telegram via your bot.        #
+REM # Author       : Murdervan                                #
+REM # Link         : github.com/murdervan                     #
+REM # Target       : Windows 10/11                            #
+REM # Description  : This bat can send message to a telegram  #
+REM #                channel or group via your bot.           #
+REM #                replace your token and chat id.          #
+REM #                                                         #
+REM ###########################################################
+
+
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
